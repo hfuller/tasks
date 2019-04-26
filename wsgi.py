@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, abort
 import psycopg2, psycopg2.extras
 import pprint
 
@@ -30,3 +30,14 @@ def add_task():
         'due': due
     })
     return redirect('/')
+
+@app.route('/task/<id>', methods=['DELETE', 'GET'])
+def delete_task(id):
+    if request.method != 'DELETE' and request.args['_method'] != 'DELETE':
+        return abort(400)
+    id = int(id)
+    cursor = conn.cursor()
+    cursor.execute('delete from task where id = %s', (id,))
+    return redirect('/')
+
+

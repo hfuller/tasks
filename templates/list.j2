@@ -7,6 +7,9 @@
 		tr#trform {
 			background-color:#363f47;
 		}
+		td.buttons * , td.buttons * * {
+			display:inline;
+		}
 	</style>
 </head>
 <body>
@@ -30,7 +33,12 @@
 			</tr>
 			{% for task in tasks %}
 			<tr>
-				<td>{{task.id}}</td>
+				<td class="buttons">
+					<form action="/task/{{task.id}}" method="DELETE">
+						<input type="hidden" name="_method" value="DELETE">
+						<button action="submit">✘</button>
+					</form>
+				</td>
 				<td>{{task.priority}}</td>
 				<td>{{task.summary}}</td>
 				<td>{{task.due}}</td>
