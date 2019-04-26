@@ -12,7 +12,7 @@ print(conn)
 @app.route('/')
 def list_tasks_html():
     cursor = conn.cursor()
-    cursor.execute("select * from task where completed = FALSE order by priority, due asc")
+    cursor.execute("select * from task where completed = FALSE order by due asc, priority desc")
     #return pprint.pformat(cursor.fetchall())
     return render_template('list.j2', tasks=cursor.fetchall())
 
