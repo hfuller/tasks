@@ -3,6 +3,11 @@
 <head>
 	<title>Tasks</title>
 	<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.css'>
+	<style>
+		tr#trform {
+			background-color:#363f47;
+		}
+	</style>
 </head>
 <body>
 	<table>
@@ -15,6 +20,14 @@
 			</tr>
 		</thead>
 		<tbody>
+			<tr id="trform">
+				<form action="/task" method="POST">
+					<td><button type="submit">+</button></td>
+					<td><input name="priority" type="number" placeholder="Priority" autocomplete="off"></td>
+					<td><input name="summary" placeholder="Summary"></td>
+					<td><input name="due" type="date" placeholder="Due Date"></td>
+				</form>
+			</tr>
 			{% for task in tasks %}
 			<tr>
 				<td>{{task.id}}</td>
